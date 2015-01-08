@@ -1,0 +1,41 @@
+<script>
+  function Store (name, percentEntering, numOrdered, min, max) {
+    this.percentEntering = percentEntering;
+    this.numOrdered = numOrdered;
+    this.name = name;
+// min and max hourly traffic
+    this.min = min;
+    this.max = max;
+
+//returns a random number of donuts for ay given hour
+    this.hourlyDonuts = function() {
+      return this.min + Math.floor(Math.random() * (this.max - this.min)) * percentEntering * numOrdered;
+    };
+// random number of donuts in a given day 
+    this.randomDay = function () {
+      console.log(this.name + " store sales each hour");
+      var total = 0;
+      for (var i = 0; i < 11; i++) {
+        var eachHour = this.hourlyDonuts();
+        total += eachHour;
+        console.log(eachHour);
+      }
+      console.log("Total " + this.name + " store sales today");
+      return total;
+    };
+ }
+    
+
+var downTown = new Store("Downtown", 0.1, 4, 80, 220);
+var CapitolHill = new Store ("Capitol Hill", 0.45, 2, 4, 45);
+var SouthLakeUnion = new Store ("South Lake Union", 0.5, 6, 180, 250);
+var WedgeWood = new Store("WedgeWood", 0.2, 1.5, 20, 60);
+var Ballard = new Store ("Ballard", 0.33, 1, 25, 175);
+
+console.log(downTown.randomDay());
+console.log(CapitolHill.randomDay());`
+console.log(SouthLakeUnion.randomDay());
+console.log(WedgeWood.randomDay());
+console.log(Ballard.randomDay());
+
+  </script>
